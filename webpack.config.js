@@ -1,3 +1,5 @@
+// Largely take from https://github.com/christianalfoni/react-webpack-cookbook/wiki/Split-app-and-vendors for the split vendors.js file stuff
+
 var path = require('path');
 var webpack = require('webpack');
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
@@ -18,10 +20,12 @@ module.exports = {
    },
    module: {
       loaders: [{
-            test: /\.jsx/,
-            loader: 'babel-loader'
-         }
-      ]
-   }
+         test: /\.jsx/,
+         exclude: [node_modules_dir],
+         loader: 'babel-loader'
+      }]
+   },
+   plugins: [
+      new webpack.optimize.CommonsChunkPlugin('vendors', 'vendorswp.js')
+   ]
 };
-
