@@ -1,15 +1,27 @@
+var path = require('path');
+var webpack = require('webpack');
+var node_modules_dir = path.resolve(__dirname, 'node_modules');
+
+var PATHS = {
+   srcjs: "src/js",
+   distsrcjs: "dist/src/js"
+};
+
 module.exports = {
-   entry: './src/js/app.jsx',
+   entry: {
+      app: path.resolve(__dirname, PATHS.srcjs + "/" + "app.jsx"),
+      vendors: ['react', 'bootstrap']
+   },
    output: {
-      filename: './dist/src/js/indexwp.js'
+      path: path.resolve(__dirname, PATHS.distsrcjs),
+      filename: 'indexwp.js'
    },
    module: {
       loaders: [{
             test: /\.jsx/,
             loader: 'babel-loader'
-         } // loaders can take parameters as a querystring
-
+         }
       ]
    }
 };
-        //    loader: 'jsx-loader?harmony
+
