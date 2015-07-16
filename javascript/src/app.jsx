@@ -33,7 +33,7 @@ var Demo = React.createClass({
             );
     },
     changeValue: function(e) {
-        console.log("changeValue");
+        console.log("changeValue innit");
         this.setState({currentValue: e.target.value});
     },
     changeAxes: function (){
